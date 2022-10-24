@@ -30,13 +30,11 @@ def replace_stop_words(phrase:str):
     This function replaces all the stop words in English. 
     """
     stop_words=set(stopwords.words("english"))
-    stop_words.add("(")
-    stop_words.add(")")
-    stop_words.add("'")
-    stop_words.add("(")
     tokens=word_tokenize(phrase)
     res=""
     for w in tokens:
+        w=w.lower()
+        w=re.sub(r"[^a-z\s]",'',w)
         if w not in stop_words:
             res+=w+' '
     return res 

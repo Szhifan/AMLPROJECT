@@ -18,6 +18,7 @@ def get_frq(label:int,target:str):
     data=df[df["label"]==str(label)][target]
     res=[]
     for s in data:
+        s=s.lower()
         s=re.sub(r"[^a-z\s]",'',s) #get ride of characters that are not letters.  
         tokens=word_tokenize(s)
         res.extend(tokens)
@@ -27,6 +28,7 @@ def generate_word_cloud(label:int,target):
     text=""
     data=df[df["label"]==str(label)][target]
     for s in data:
+        s=s.lower()
         s=re.sub(r"[^a-z\s]",'',s)
         text+=s+" " 
     
@@ -40,6 +42,6 @@ def generate_word_cloud(label:int,target):
   
     plt.savefig(save_path)
 
-
-print(sum((df["label"]=="1") & (df["key_words"]=="")))
-print(sum(df["key_words"]==""))
+for i in range(1,6):
+    generate_word_cloud(i,"key_words")
+    generate_word_cloud(i,"lemma")
