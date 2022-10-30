@@ -6,7 +6,7 @@
 
 
 4. create a dataframe in path: df_data/phrases_data.df with the column: 
-   ['id', 'phrase', 'lemma', 'key_words', 'label'], where key_words column contain the verbs, adj and adv of each phrase. 
+   ['id', 'phrase', 'lemma', 'keywords', 'label'], where key_words column contain the verbs, adj and adv of each phrase. 
 
 ## Data exploration 
 
@@ -25,3 +25,8 @@
 Note that in the word cloud for the keywords we can see a lot of adjectives that directly indicate the sentiments: bad, lack, predictable,
 
 little, boring etc. Thus, we will use the words in the keywords to construct our features for predicting the labels. 
+
+
+## Dealing with negation word. 
+Our original data cannot capture the semantics of the negation words. For instance, given a comment: "it is not a good film." We expect it to be label as negative, but since "good" is in our model and that p(w=good|c=positive) is high, the probability that this phrase has negative sentiment is probably low. In order to catch the semantics of the negation, we devised a simple methods adopted from the one proposed in J.Daniel (2020) that if we encounter a negation word "not", we automatically add a "neg_" tag to all the following words in that phrase. Thus _"it is not a good film."_ will be _"It is not neg_a neg_good neg_film."_ . Then we will use words with negation suffix such as _neg_good_ as features. Note that we only use search for not as an indication of negation because words like: "don't", "doesn't" and so on are lemmatized as "do not" and "does not" by the Stanza lemmatizer. 
+Thus, we apply the following process to all the keywords in the dataframe and create a new column called _neg_keywords_ where each keyword of the phrase are tagged with "neg_" suffix if they follow a negation word. 

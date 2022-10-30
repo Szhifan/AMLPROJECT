@@ -27,7 +27,7 @@ for very negative, negative, neutral, positive, very positive, respectively.
 Please note that phrase ids and sentence ids are not the same.
 
 4. SOStr.txt and STree.txt encode the structure of the parse trees. 
-STree encodes the trees in a parent pointer format. Each line corresponds to each sentence in the datasetSentences.txt file. The Matlab code of this paper will show you how to read this format if you are not familiar with it.
+   STree encodes the trees in a parent pointer format. Each line corresponds to each sentence in the datasetSentences.txt file. The Matlab code of this paper will show you how to read this format if you are not familiar with it.
 
 5. datasetSentences.txt contains the sentence index, followed by the sentence string separated by a tab. These are the sentences of the train/dev/test sets.
 

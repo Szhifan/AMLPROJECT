@@ -7,6 +7,8 @@ from nltk.tokenize import word_tokenize
 from matplotlib import pyplot as plt
 from collections import Counter
 from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+import seaborn as sns
 # nlp = stanza.Pipeline('en', processors='tokenize,mwt,pos,lemma', use_gpu=True)
 path_ph_data="df_data/phrases_data.df"
 df=pickle.load(open(path_ph_data,"rb"))
@@ -42,6 +44,3 @@ def generate_word_cloud(label:int,target):
   
     plt.savefig(save_path)
 
-for i in range(1,6):
-    generate_word_cloud(i,"key_words")
-    generate_word_cloud(i,"lemma")
